@@ -1,0 +1,466 @@
+@import url('https://fonts.googleapis.com/css2?family=Pathway+Gothic+One&family=Roboto+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Pathway+Gothic+One&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html { scroll-padding-top: 90px; }
+body {
+    font-family:'Pathway Gothic One', sans-serif;
+    min-height: 100vh;
+}
+#logo {font-weight: bold; font-size: 2.5rem; display: flex}
+.text-primary {color: rgb(171, 184, 0);}
+#navbar {display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; position: sticky; top: 0; background-color: black; color: white;padding: 1rem; width: 100%;z-index: 99;}
+.obrazek {
+    height: 45px;
+    width: 45px;
+    vertical-align: bottom;
+
+}
+
+/* navbar asi */
+
+.topnav a {
+    text-decoration: none;
+    float: left;
+    display: inline;
+    color: white;
+    text-align: center;
+    padding: 16px 16px 16px 16px;
+    font-size: 20px;
+    font-family:'Pathway Gothic One', sans-serif;
+}
+.lisst {
+    display: flex;
+    list-style: none;
+
+}
+#toggler, label {
+    display: none;
+    padding: 16px;
+    
+}
+#toggler, label:hover {
+background-color: yellow;
+border-radius: 5px;
+color: black;
+}
+
+@media screen and (max-width: 800px){
+    .topnav { width:100% ; max-height: 0; overflow: hidden;}
+    label {display: inline-flex;}
+    #toggler:checked~.topnav{max-height: 100%;}
+    .lisst{flex-direction: column; align-items:end; padding: 20px;}
+}
+#navbar a {color:white; text-decoration: none;}
+
+#navbar a:hover {
+    background-color: yellow;
+    border-radius: 4px;
+    color: black;
+}
+
+
+
+
+
+/* showcase */
+#showcase {
+    background: #333 url("../img/engel.jpg") no-repeat center center/cover;
+    height: 100vh;
+    color: white;
+}
+#showcase .showcase-content {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 2rem;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.l-heading {
+    font-size: 4rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+
+}
+
+.lead {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+
+}
+.btn {
+    display: inline-block;
+    color: black;
+    background: yellow;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 5px;
+
+}
+.btn:hover {
+    background: rgb(163, 163, 0);
+}
+.btn-dark {
+    background-color: #333;
+    color: white;
+}
+.container {
+    max-width: 1100px;
+    margin: auto;
+    padding: 1rem;
+    overflow: hidden;
+    text-align: center;
+
+}
+
+.text-center {
+    text-align: center;
+}
+.text-center-bily {
+    text-align: center;
+    color: white;
+}
+.m-heading {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+}
+.py-1 {
+    padding: 1.5rem 0;
+}
+.py-2 {
+    padding: 2rem 0;
+}
+.py-3 {
+    padding: 3rem 0;
+}
+
+
+
+
+/* o nas */
+#what .items {
+    display: flex;
+    padding: 1rem;
+    justify-content: center;
+    z-index: -1;
+}
+#what .item {
+    text-align: center;
+    padding: 1rem;
+    z-index: 0;
+}
+#what .items .item i {
+    background: yellow;
+    padding: 1rem;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+
+}
+.bg-light {
+    background: rgb(128, 127, 127);
+    color: black;
+}
+.bg-dark {
+    background: #333;
+    color: white;
+}
+.py-1 {
+    padding: 1.5rem;
+}
+.py-2 {
+    padding: 2rem;
+}
+.py-3 {
+    padding: 3rem;
+}
+.list {
+    margin: 0.5rem 0;
+    list-style: none;
+}
+.list li {
+    padding: 0.5rem 0;
+    border-bottom: #444 dotted 1px;
+}
+video {
+    max-width: 700px;
+}
+@media screen and (max-width: 700px){
+    video { max-width: 320px;
+           max-height: 240px; 
+        }
+    
+}
+
+
+
+/* kdo jsme */
+#who {
+    display: flex;
+}
+#who div {
+    flex: 1;
+}
+#who .who-img {
+    background: url("../img/120524-science-crucifixion-130p.webp") no-repeat center/cover;
+}
+
+
+/* tabulka hrichu */ 
+table {
+    border: 0.125rem solid;
+    border-collapse: collapse;
+    background-color:#b4b4b4;
+    top: 100;
+    margin-top: 60px;
+    width: 100%;
+    font-size: 22px;
+    
+    
+}
+
+th {
+    height: 2rem;
+    width: 10%;
+    text-align: center;
+    padding: 0.188rem;
+    border: 0.125rem solid;
+    border-bottom: 0.125rem solid;
+    border-collapse: collapse;
+    background-color: yellow;
+}
+
+td {
+    height: 2rem;
+    width: 10%;
+    text-align: center;
+    padding: 0.188rem;
+    border-bottom: 0.063rem solid #ddd;
+}
+
+tr:hover {
+    background-color: lightgray;
+}
+tr {
+    margin-top: 15px;
+}
+.center {
+    margin:auto;
+    width: 50%;
+    padding:1rem;
+}
+.tabula {
+    display: flex;
+    top: 50px;
+    flex-wrap: wrap;
+
+}
+
+
+
+/* stary zakon */
+
+#zakon{
+    display: flex;
+}
+#strz {
+    background: #333 url("../img/001.The_Creation_of_Light.jpg") no-repeat center center/cover;
+    height: 200vh;
+    color: white;
+    
+}
+#strz .straz {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+    padding-right: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+#showcase1 {
+    background: #333 url("../img/001.The_Creation_of_Light.jpg") no-repeat center center/cover;
+    color: white;
+    z-index: 5;
+}
+#showcase1 .showcase-content1 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+#showcase2 {
+    background: #333 url("../img/001.The_Creation_of_Light.jpg") no-repeat center center/cover;
+    color: white;
+    z-index: 5;
+}
+#showcase2 .showcase-content2 {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+
+.kap {
+    margin-left: 10px;
+    color: white;
+    font-size: 30px;
+    margin-top: 0px;
+    padding: 0 4rem;
+    padding: 10px 30px 0px 30px;
+    text-align: left;
+    margin-bottom: 20px;
+    
+  }
+
+  @media  screen and (max-width: 725px) {
+
+    .kap {padding: 4px;}
+    .kap {margin-top: 0px;}
+    .kap {margin-right: 10px;}
+    .kap {font-size: 15px;}
+    
+    
+  }
+
+  .knihy {
+    font-size: 4rem;
+    margin-bottom: 0.75rem;
+    line-height: 1.1;
+    text-align: center;
+    margin-top: 100px;
+    padding: 0px 30px 0px 30px;
+}
+@media screen and (max-width: 725px) {
+    .knihy {font-size: 40px;}
+
+}
+
+.upozorneni {
+    margin-top: 100px;
+    color: red;
+    font-size: 25px;
+}
+@media screen and (max-width: 725px) {
+    .upozorneni{font-size: 15px;}
+    .upozorneni {padding: 4px;}
+    .upozorneni {margin-top: 0px;}
+    .upozorneni {margin-left: 130px;}
+    .upozorneni {margin-right: 10px;}
+
+}
+.zakony_ {margin-top: 100px;
+          height: 200vh;}
+
+.btnn {
+    display: inline-block;
+    color: black;
+    background: yellow;
+    padding: 0.5rem 2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 60px;
+
+}
+.btnn:hover {
+    background: rgb(163, 163, 0);
+    
+}
+.btnn-dark {
+    background-color: #333;
+    color: white;
+}
+
+      
+
+/* postavy*/
+
+    .textpodobr {
+        color: white;
+        font-size: 20px;
+        background-color: black;
+        padding: 6px;
+        text-align: center;
+        text-decoration: none;
+    }
+    .textpodober a {
+        text-decoration: none;
+    }
+#cerna {
+    background: black;
+    min-height: auto;
+} 
+#cerna h1 {
+    text-align: center;
+    color: white;
+    font-size: 50px;
+}
+
+.postavyy {
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+
+    
+    grid-template-columns: auto auto auto auto auto auto;
+    column-gap: 10px;
+    row-gap: 10px;
+
+    
+}
+.postavyy img {
+    width: 220px;
+    height: 300px;
+    object-fit: cover;
+    object-position: center;
+}
+
+@media screen and (max-width: 900px){
+    #cerna {height: 200vh;}
+    .postavyy img {width: 150px; height: 220px ;}
+}
+@media screen and (max-width: 600px){
+    #cerna {height: 200vh;}
+    .postavyy img {width: 100px; height: 170px ;}
+    
+}
+
+.column {
+    float: left;
+    width: 50%;
+    padding: 10px;
+    height: 400px; 
+    font-size:large;
+    border: 0.125rem solid;
+    border-collapse: collapse;
+    border-color: yellow;
+    background-color: #b4b4b4;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  @media screen and (max-width: 800px) {
+    .column {
+      width: 100%;
+    }
+  }
