@@ -1,1 +1,39 @@
 hello world
+
+<?php
+session_start(); // Spustí session
+?>
+
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <title>Navbar</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav>
+        <ul>
+            <li><a href="index.php">Domů</a></li>
+            <?php
+            // Pokud je uživatel přihlášen, zobrazí se tlačítko na komentáře
+            if (isset($_SESSION['user_id'])) {
+                echo '<li><a href="comments.php">Komentáře</a></li>';
+            }
+            ?>
+            <?php
+            // Pokud je uživatel přihlášen, zobrazí se tlačítko pro odhlášení
+            if (isset($_SESSION['user_id'])) {
+                echo '<li><a href="logout.php">Odhlásit</a></li>';
+            } else {
+                // Pokud není uživatel přihlášen, zobrazí se tlačítko pro přihlášení
+                echo '<li><a href="login.php">Přihlásit se</a></li>';
+                echo '<li><a href="register.php">Registrovat se</a></li>';
+            }
+            ?>
+        </ul>
+    </nav>
+</body>
+</html>
+

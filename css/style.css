@@ -9,6 +9,7 @@ html { scroll-padding-top: 90px; }
 body {
     font-family:'Pathway Gothic One', sans-serif;
     min-height: 100vh;
+    background: black;
 }
 #logo {font-weight: bold; font-size: 2.5rem; display: flex}
 .text-primary {color: rgb(171, 184, 0);}
@@ -399,8 +400,8 @@ tr {
         text-decoration: none;
     }
 #cerna {
-    background: black;
-    min-height: auto;
+    background-color: black;
+    min-height: 1500px;
 } 
 #cerna h1 {
     text-align: center;
@@ -409,18 +410,16 @@ tr {
 }
 
 .postavyy {
-    position: absolute;
+
     justify-content: center;
     align-items: center;
     display: flex;
     flex-wrap: wrap;
     margin-top: 10px;
-
-    
     grid-template-columns: auto auto auto auto auto auto;
     column-gap: 10px;
     row-gap: 10px;
-
+    background: black;
     
 }
 .postavyy img {
@@ -464,3 +463,11 @@ tr {
       width: 100%;
     }
   }
+  footer {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+ }

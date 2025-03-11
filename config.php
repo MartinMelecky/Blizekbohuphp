@@ -1,4 +1,9 @@
 <?php
-$username 	= "root";
-$password 	= "JezisKristus";
+$config = [
+    'servername' => 'localhost',
+    'username' => 'root',
+    'password' => 'JezisKristus',
+    'dbname' => 'bible',
+];
+
 ?>
