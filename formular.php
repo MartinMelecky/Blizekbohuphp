@@ -3,7 +3,7 @@
       include("./layout/navbar.php"); ?>
     <?php
 
-session_start();
+
 
 if (isset($_SESSION["user_id"])) {
     
@@ -31,7 +31,7 @@ if (isset($_SESSION["user_id"])) {
 </div>
 <?php if (isset($user)): ?>
         
-        <p>Hello <?= htmlspecialchars($user["name"]) ?></p>
+        <p>Hello <?= htmlspecialchars($user["jmeno"]) ?></p>
         
         <p><a href="logout.php">Log out</a></p>
         

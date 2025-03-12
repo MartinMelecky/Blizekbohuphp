@@ -9,7 +9,6 @@ html { scroll-padding-top: 90px; }
 body {
     font-family:'Pathway Gothic One', sans-serif;
     min-height: 100vh;
-    background: black;
 }
 #logo {font-weight: bold; font-size: 2.5rem; display: flex}
 .text-primary {color: rgb(171, 184, 0);}
@@ -463,11 +462,3 @@ tr {
       width: 100%;
     }
   }
-  footer {
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: red;
-    color: white;
-    text-align: center;
- }
