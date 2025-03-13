@@ -1,28 +1,55 @@
 <?php require_once("config.php");
       include("./layout/hlava.php");
-      require("./layout/navbar.php");
+      include("./layout/navbar.php");
       require("common.php");
-      require("./cssform/form.css"); ?>
-        
+      require("database.php"); ?>
 <?php
 
 
-$commentsQuery = "SELECT k.koment, k.datum, u.jmeno FROM komentare k JOIN user u ON k.user_id = u.id ORDER BY k.datum DESC";
-$result = $conn->query($commentsQuery);
+// SQL dotaz pro získání všech komentářů a jejich autorů
+$sql = "SELECT k.koment, k.datum, u.jmeno FROM komenatre k JOIN user u ON k.user_id = u.id ORDER BY k.datum DESC";
+$result = $mysqli->query($sql);
 
-echo '<h2>Komentáře</h2>';
-
-while ($row = $result->fetch_assoc()) {
-    echo "<p><strong>" . htmlspecialchars($row['jemno']) . "</strong> (" . $row['datum'] . "): " . htmlspecialchars($row['koment']) . "</p>";
-}
-
-if (isset($_SESSION['user_id'])) {
-    // Uživatel je přihlášen
-    echo '<form method="POST" action="post_comment.php">
-            <textarea name="komment" required></textarea>
-            <button type="submit">Přidat komentář</button>
-          </form>';
-} else {
-    echo "<p>Pro přidání komentáře se musíte přihlásit.</p>";
-}
+// HTML pro zobrazení komentářů
 ?>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seznam komentářů</title>
+    <link rel="stylesheet" href="./css/komet.css"> <!-- Odkaz na externí CSS soubor -->
+    <style>
+        /* CSS kód je možné také vložit přímo sem, pokud ho nechceš mít v externím souboru */
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Seznam komentářů</h2>
+
+    <?php
+    if ($result->num_rows > 0) {
+        // Zobrazíme každý komentář
+        while ($row = $result->fetch_assoc()) {
+            // Formátování data
+            $formatted_date = date('d.m.Y H:i:s', strtotime($row['datum']));
+            ?>
+            <div class="komentar">
+                <p class="jmeno"><?php echo htmlspecialchars($row['jmeno']); ?> <span class="datum"> - <?php echo $formatted_date; ?></span></p>
+                <p><?php echo nl2br(htmlspecialchars($row['koment'])); ?></p>
+            </div>
+            <hr>
+            <?php
+        }
+    } else {
+        echo "<p>Žádné komentáře nebyly nalezeny.</p>";
+    }
+
+    $mysqli->close();
+    ?>
+
+</div>
+
+</body>
+</html>

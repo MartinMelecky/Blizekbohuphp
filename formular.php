@@ -1,51 +1,51 @@
 <?php require_once("config.php");
       include("./layout/hlava.php");
-      include("./layout/navbar.php"); ?>
-    <?php
+      include("./layout/navbar.php");
+      require("common.php");
+      require("database.php"); ?>
+<?php
 
-
-
-if (isset($_SESSION["user_id"])) {
-    
-    $mysqli = require("database.php");
-    
-    $sql = "SELECT * FROM user
-            WHERE id = {$_SESSION["user_id"]}";
-            
-    $result = $mysqli->query($sql);
-    
-    $user = $result->fetch_assoc();
+// Ověření, zda je uživatel přihlášen
+if (!isset($_SESSION['user_id'])) {
+    echo "Musíte být přihlášený, abyste mohl přidat komentář.";
+    exit;
 }
 
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Připojení k databázi
+
+    if ($mysqli->connect_error) {
+        die("Spojení s databází selhalo: " . $mysqli->connect_error);
+    }
+
+    // Získání komentáře a ID uživatele
+    $komentar = $_POST['komentar'];
+    $uzivatel_id = $_SESSION['user_id'];
+
+    // Vložení komentáře do databáze
+    $stmt = $mysqli->prepare("INSERT INTO komenatre (user_id, koment) VALUES (?, ?)");
+    $stmt->bind_param("is", $uzivatel_id, $komentar);
+
+    if ($stmt->execute()) {
+        echo "Komentář byl úspěšně přidán!"; {
+        header("Location: komentare.php");
+        }
+        
+    } else {
+        echo "Chyba při přidávání komentáře: " . $stmt->error;
+    }
+
+    $stmt->close();
+    $mysqli->close();
+}
 ?>
-    <link rel="stylesheet" href="./cssform/form.css">
-    
+
+<link rel="stylesheet" href="./cssform/form.css">
 <div id="cerna">
   <h1>Zpětná vazba</h1>
-<form>
-  <input name="name" type="text" class="feedback-input" placeholder="Jméno" />
-  <input name="email" type="text" class="feedback-input" placeholder="Email" />
-  <textarea name="text" class="feedback-input" placeholder="text"></textarea>
+<form method="post">
+<h3>komentáře zde =><a href="komentare.php" class="btn">komentáře</a></h3>
+  <textarea name="komentar" class="feedback-input" placeholder="text"></textarea>
   <input type="submit" value="ODESLAT"/>
 </form>
 </div>
-<?php if (isset($user)): ?>
-        
-        <p>Hello <?= htmlspecialchars($user["jmeno"]) ?></p>
-        
-        <p><a href="logout.php">Log out</a></p>
-        
-    <?php else: ?>
-        
-        <p><a href="login.php">Log in</a> or <a href="signup.html">sign up</a></p>
-        
-    <?php endif; ?>
-
-    <footer id="main-footer" class="bg-dark text-center py-1">
-      <div class="container">
-          <p>Copyright &copy; 2023, Království Nebeské</p>
-      </div>
-  </footer>
-    <script></script>
-</body>
-</html>

@@ -65,11 +65,7 @@
             </ul>
         </div>
     </section>
-    <footer id="main-footer" class="bg-dark text-center py-1">
-        <div class="container">
-            <p>Copyright &copy; 2023, Království Nebeské</p>
-        </div>
-    </footer>
+<?php require("./layout/noha.php")?>
     <script>
         function debounce(func, wait = 20, immediate = true) {
     var timeout;
@@ -128,7 +124,6 @@ window.addEventListener('scroll', debounce(checkSlide));
 
 
 
-</script>"
     </script>
 </body>
 </html>

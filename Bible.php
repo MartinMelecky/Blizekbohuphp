@@ -1,6 +1,7 @@
 <?php require_once("common.php");
       include("./layout/hlava.php");
-      include("./layout/navbar.php"); ?>
+      include("./layout/navbar.php");
+      require_once("config.php"); ?>
       <?php
 
 
@@ -29,8 +30,7 @@ if (isset($_GET['kapitola_id'])) {
 
 $conn->close();
 ?>
-    
-    <body id="cerna">
+    <div id="cerna">
     <h1>Procházejte Bibli</h1>
 
     <form action="" method="GET">
@@ -71,4 +71,6 @@ $conn->close();
             </ul>
         <?php endif; ?>
     </form>
+</div>
 </body>
+</html>
