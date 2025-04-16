@@ -28,7 +28,7 @@ if (isset($_SESSION["user_id"])) {
             <?php
             // Pokud je uživatel přihlášen, zobrazí se tlačítko na komentáře
             if (isset($_SESSION['user_id'])) {
-                echo '<li><a href="formular.php">Komentáře</a></li>';
+                echo '<li><a href="profil.php">Profil</a></li>';
             }
             ?>
             <?php

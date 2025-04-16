@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <link rel="stylesheet" href="./cssform/form.css">
 <div id="cerna">
-  <h1>Zpětná vazba</h1>
+  <h1>Komentáře / Diskuze</h1>
 <form method="post">
 <h3>komentáře zde =><a href="komentare.php" class="btn">komentáře</a></h3>
   <textarea name="komentar" class="feedback-input" placeholder="text"></textarea>

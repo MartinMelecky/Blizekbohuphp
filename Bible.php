@@ -1,13 +1,33 @@
-<?php require_once("common.php");
-      include("./layout/hlava.php");
-      include("./layout/navbar.php");
-      require_once("config.php"); ?>
-      <?php
+<?php 
+require_once("common.php");
+include("./layout/hlava.php");
+include("./layout/navbar.php");
+require_once("config.php");
 
 
+// Zpracování uložení verše do oblíbených
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['ulozit_vers']) && isset($_SESSION['user_id'])) {
+    $user_id = $_SESSION['user_id'];
+    $kapitola_id = $_POST['kapitola_id'];
+    $cislo_verse = $_POST['cislo_verse'];
+    $text_verse = $_POST['text_verse'];
+
+    $stmt = $conn->prepare("INSERT INTO oblibene_verse (user_id, kapitola_id, cislo_verse, text_verse) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("iiis", $user_id, $kapitola_id, $cislo_verse, $text_verse);
+    $stmt->execute();
+    
+    $stmt->close();
+
+    // Přesměrování, aby se po obnovení stránky neodeslal znovu POST
+    header("Location: " . $_SERVER['REQUEST_URI']);
+    exit;
+}
+
+// Načtení knih
 $sql_books = "SELECT id, nazev FROM knihy";
 $result_books = $conn->query($sql_books);
 
+// Načtení kapitol dle vybrané knihy
 $chapters = [];
 if (isset($_GET['kniha_id'])) {
     $book_id = $_GET['kniha_id'];
@@ -18,6 +38,7 @@ if (isset($_GET['kniha_id'])) {
     }
 }
 
+// Načtení veršů dle vybrané kapitoly
 $verses = [];
 if (isset($_GET['kapitola_id'])) {
     $chapter_id = $_GET['kapitola_id'];
@@ -30,7 +51,8 @@ if (isset($_GET['kapitola_id'])) {
 
 $conn->close();
 ?>
-    <div id="cerna">
+
+<div id="cerna">
     <h1>Procházejte Bibli</h1>
 
     <form action="" method="GET">
@@ -63,14 +85,28 @@ $conn->close();
         <?php if (isset($_GET['kapitola_id'])): ?>
             <h2>Verše:</h2>
             <ul>
-                <?php
-                foreach ($verses as $verse) {
-                    echo "<li><strong>" . $verse['cislo_verse'] . ":</strong> " . $verse['text_verse'] . "</li>";
-                }
-                ?>
+            <?php
+foreach ($verses as $verse) {
+    echo '<li class="verse-item">'; // Třída "verse-item" pro každý <li>
+
+    echo '<span class="verse-text"><strong>' . $verse['cislo_verse'] . ':</strong> ' . $verse['text_verse'] . '</span>';
+
+    if (isset($_SESSION['user_id'])) {
+        echo '<form method="POST" class="save-form">
+                <input type="hidden" name="kapitola_id" value="' . htmlspecialchars($chapter_id) . '">
+                <input type="hidden" name="cislo_verse" value="' . htmlspecialchars($verse['cislo_verse']) . '">
+                <input type="hidden" name="text_verse" value="' . htmlspecialchars($verse['text_verse']) . '">
+                <button type="submit" name="ulozit_vers" class="save-button">Uložit</button>
+              </form>';
+    }
+
+    echo '</li>';
+}
+?>
             </ul>
         <?php endif; ?>
     </form>
 </div>
+
 </body>
 </html>

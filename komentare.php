@@ -26,7 +26,7 @@ $result = $mysqli->query($sql);
 <body>
 
 <div class="container">
-    <h2>Seznam komentářů</h2>
+    <h2>Diskuze</h2>
 
     <?php
     if ($result->num_rows > 0) {

@@ -1,5 +1,3 @@
-
-
 /* Styl pro nadpis h1 */
 .biblestyl h1 {
     text-align: center;
@@ -9,21 +7,21 @@
 }
 
 /* Styl pro nadpisy h2 */
-.biblestl h2 {
+.biblestyl h2 {
     font-size: 1.5em;
     color: yellow;
     margin-top: 20px;
-
 }
 
 /* Styl pro formulář */
 form {
-    max-width: 900px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #333; /* tmavě šedé pozadí pro form */
-    border-radius: 8px;
+    background-color: #444; /* tmavě šedé pozadí pro form */
     color: white;
+    padding: 10px 10px 0 10px;
+    border-radius: 5px;
+
 }
 
 /* Styl pro výběrové pole select */
@@ -43,13 +41,50 @@ ul {
     list-style-type: none;
     padding-left: 0;
 }
-
-li {
+/* Styl pro každý verš - žluté číslo verše */
+li strong {
+    color: yellow;
+}
+/* Styl pro každý verš */
+/* Styl pro každý verš */
+.verse-item {
+    position: relative; /* Nastavení relativní pozice pro rodiče */
     margin: 10px 0;
     font-size: 1.2em;
+    background-color: #444; /* Tmavě šedé pozadí */
+    padding: 10px;
+    border-radius: 5px;
+    display: flex; /* Flexbox pro zarovnání obsahu */
+    align-items: center; /* Vertikální zarovnání na střed */
+
 }
 
-/* Styl pro každý verš */
-li strong {
-    color: yellow;  /* Žlutá pro číslo verše */
+/* Styl pro text verše */
+.verse-text {
+    margin-right: 100px; /* Rezerva pro tlačítko na pravé straně */
+
+}
+
+/* Styl pro tlačítko "Uložit" */
+.save-form {
+    position: absolute; /* Absolutní pozice tlačítka */
+    right: 10px; /* Zarovnání tlačítka k pravému okraji */
+    top: 50%; /* Vertikální zarovnání na střed */
+    transform: translateY(-50%); /* Korekce vertikálního zarovnání */
+}
+
+/* Styl pro tlačítko "Uložit" */
+.save-button {
+    background-color: yellow;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 5px;
+    padding: 5px 15px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: #b3b000; /* Tmavší modrá při hover */
 }

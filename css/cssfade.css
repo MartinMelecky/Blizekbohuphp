@@ -17,12 +17,12 @@
 }
 
 .bg-light {
-    background: rgb(128, 127, 127);
-    color: black;
+    background: #807f7f;
+    color: #000000;
 }
 
 .bg-dark {
-    background: #333;
+    background: #333333;
     color: #fff;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .text-primary {
-    color: yellow;
+    color: #ffff00;
 }
 
 a {
@@ -64,10 +64,8 @@ p {
 /* Showcase */
 #showcase {
     height: 100vh;
-    color: #fff;
+    color: rgb(255, 255, 255);
 }
-
-/* Photo by <a href="https://unsplash.com/@itfeelslikefilm?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">🇸🇮 Janko Ferlič</a> on <a href="https://unsplash.com/s/photos/library?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a> */
 
 #showcase .showcase-content {
     display: flex;
@@ -92,7 +90,7 @@ p {
     padding: 1rem;
     border-radius: 10px;
     border: 1px black solid;
-    background-color: #ddd;
+    background-color: #dddddd;
     margin: 10px;
     color: black;
     opacity: 0;
@@ -106,7 +104,7 @@ p {
 }
 
 #what .items .item i {
-    background: yellow;
+    background: rgb(255, 255, 0);
     padding: 1rem;
     border-radius: 50%;
     margin-bottom: 1rem;

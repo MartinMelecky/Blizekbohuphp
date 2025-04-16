@@ -1,52 +1,65 @@
-<?php require_once("config.php");
-      include("./layout/hlava.php");
-      require("./layout/navbar.php");
-      require("common.php"); ?>
-
 <?php
-session_start();
-include 'db.php';
+require_once("common.php");
+include("./layout/hlava.php");
+include("./layout/navbar.php");
+require_once("config.php");
+
+
 
 if (!isset($_SESSION['user_id'])) {
-    echo "Musíte být přihlášeni, abyste viděli svůj profil.";
-    exit();
+    header("Location: login.php");
+    exit;
 }
 
-$userId = $_SESSION['user_id'];
-$query = "SELECT jmeno, email FROM user WHERE id = ?";
-$stmt = $conn->prepare($query);
-$stmt->bind_param("i", $userId);
+$user_id = $_SESSION['user_id'];
+
+// Načtení oblíbených veršů
+$sql_verses = "SELECT kapitola_id, cislo_verse, text_verse FROM oblibene_verse WHERE user_id = ?";
+$stmt = $conn->prepare($sql_verses);
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
-$result = $stmt->get_result();
-$user = $result->fetch_assoc();
+$result_verses = $stmt->get_result();
 
-echo "<h2>Profil: " . htmlspecialchars($user['jmeno']) . "</h2>";
-echo "<p>Email: " . htmlspecialchars($user['email']) . "</p>";
-
-// Zobrazení uživatelových komentářů
-$commentsQuery = "SELECT komment, datum FROM komentare WHERE user_id = ? ORDER BY datum DESC";
-$stmt = $conn->prepare($commentsQuery);
-$stmt->bind_param("i", $userId);
+// Načtení komentářů
+$sql_comments = "SELECT koment, datum FROM komenatre WHERE user_id = ? ORDER BY datum DESC";
+$stmt = $conn->prepare($sql_comments);
+$stmt->bind_param("i", $user_id);
 $stmt->execute();
-$commentsResult = $stmt->get_result();
+$result_comments = $stmt->get_result();
 
-echo "<h3>Vaše komentáře</h3>";
-while ($row = $commentsResult->fetch_assoc()) {
-    echo "<p>" . htmlspecialchars($row['datum']) . ": " . htmlspecialchars($row['komment']) . "</p>";
-}
-
-// Náhodný verš z Bible
-$randomVerseQuery = "SELECT bv.verse_text 
-                     FROM bible_verses bv
-                     JOIN bible_chapters bc ON bv.chapter_id = bc.id
-                     JOIN bible_books bb ON bc.book_id = bb.id
-                     ORDER BY RAND() LIMIT 1";
-
-$verseResult = $conn->query($randomVerseQuery);
-$verse = $verseResult->fetch_assoc();
-
-echo "<h3>Náhodný verš:</h3>";
-echo "<p>" . htmlspecialchars($verse['verse_text']) . "</p>";
-
-echo '<a href="logout.php">Odhlásit se</a>';
+$conn->close();
 ?>
+
+    <link rel="stylesheet" href="./css/profil.css">
+<div id="cerna">
+    <div class="profile">
+        <h1 >Váš profil</h1>
+
+        <section class="favorite-verses">
+    <h2 class="ratata">Oblíbené verše</h2>
+    <ul>
+        <?php while ($row = $result_verses->fetch_assoc()): ?>
+            <li class="profili">
+                <?php 
+                echo "Kapitola " . htmlspecialchars($row['kapitola_id']) . ", Verš " . htmlspecialchars($row['cislo_verse']) . ": " . htmlspecialchars($row['text_verse']); 
+                ?>
+            </li>
+        <?php endwhile; ?>
+    </ul>
+</section>
+
+        <section class="comments">
+            <h2 class="ratata">Vaše komentáře</h2>
+            <ul>
+                <?php while ($row = $result_comments->fetch_assoc()): ?>
+                    <li class="profili">
+                        <p><?php echo htmlspecialchars($row['koment']); ?></p>
+                        <small>Vytvořeno: <?php echo $row['datum']; ?></small>
+                    </li>
+                <?php endwhile; ?>
+            </ul>
+        </section>
+    </div>
+</div>
+</body>
+</html>
