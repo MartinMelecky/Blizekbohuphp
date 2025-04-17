@@ -19,7 +19,7 @@ form {
     margin: 0 auto;
     background-color: #444; /* tmavě šedé pozadí pro form */
     color: white;
-    padding: 10px 10px 0 10px;
+    padding: 10px 10px 10px 10px;
     border-radius: 5px;
 
 }
@@ -44,24 +44,27 @@ ul {
 /* Styl pro každý verš - žluté číslo verše */
 li strong {
     color: yellow;
+    font-weight: normal ; /* Normální váha písma pro číslo verše */
 }
 /* Styl pro každý verš */
 /* Styl pro každý verš */
 .verse-item {
     position: relative; /* Nastavení relativní pozice pro rodiče */
-    margin: 10px 0;
+    margin: 10px ;
     font-size: 1.2em;
     background-color: #444; /* Tmavě šedé pozadí */
-    padding: 10px;
+    padding: 5px ;
     border-radius: 5px;
     display: flex; /* Flexbox pro zarovnání obsahu */
     align-items: center; /* Vertikální zarovnání na střed */
+    justify-content: space-between; /* Zarovná text vlevo a tlačítko vpravo */
 
 }
 
 /* Styl pro text verše */
 .verse-text {
     margin-right: 100px; /* Rezerva pro tlačítko na pravé straně */
+    flex: 1; /* Zajistí, že text zabere dostupný prostor */
 
 }
 
@@ -71,6 +74,7 @@ li strong {
     right: 10px; /* Zarovnání tlačítka k pravému okraji */
     top: 50%; /* Vertikální zarovnání na střed */
     transform: translateY(-50%); /* Korekce vertikálního zarovnání */
+    margin: 0; /* Odstraní případné mezery kolem formuláře */
 }
 
 /* Styl pro tlačítko "Uložit" */
